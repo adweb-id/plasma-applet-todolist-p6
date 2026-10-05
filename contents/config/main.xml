@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+	<kcfgfile name=""/>
+
+	<group name="General">
+		<entry name="icon" type="String">
+			<default>view-list-symbolic</default>
+		</entry>
+		<entry name="noteText" type="String">
+			<default></default>
+		</entry>
+		<entry name="showCompletedItems" type="Bool">
+			<default>false</default>
+		</entry>
+		<entry name="deleteOnComplete" type="Bool">
+			<default>true</default>
+		</entry>
+		<entry name="hidden" type="Bool">
+			<default>false</default>
+		</entry>
+		<entry name="showBackground" type="Bool">
+			<default>false</default>
+		</entry>
+		<entry name="listTitleBold" type="Bool">
+			<default>true</default>
+		</entry>
+		<entry name="listTitleOutline" type="Bool">
+			<default>true</default>
+		</entry>
+		<entry name="strikeoutCompleted" type="Bool">
+			<default>true</default>
+		</entry>
+		<entry name="fadeCompleted" type="Bool">
+			<default>true</default>
+		</entry>
+		<entry name="showCounter" type="String">
+			<!-- Never, Incomplete, Always -->
+			<default>Incomplete</default>
+		</entry>
+		<entry name="bigCounter" type="Bool">
+			<default>false</default>
+		</entry>
+		<entry name="roundCounter" type="Bool">
+			<default>true</default>
+		</entry>
+	</group>
+
+</kcfg>

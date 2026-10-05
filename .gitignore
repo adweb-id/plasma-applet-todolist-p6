@@ -1,0 +1,3 @@
+*.plasmoid
+translate/build
+translate/merge

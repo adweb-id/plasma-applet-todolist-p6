@@ -18,8 +18,10 @@ Item {
 		id: badgeRect
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
-		height: Math.round(parent.height * overlay.heightRatio)
-		width: Math.max(height, badgeLabel.implicitWidth + height * 0.3)
+		// Size the badge from the icon height, NOT from the label's
+		// implicitWidth (which blows up under Text.Fit + a huge pixelSize).
+		height: Math.max(8, Math.round(parent.height * overlay.heightRatio))
+		width: Math.min(parent.width, Math.max(height, badgeLabel.contentWidth + height * 0.4))
 		color: overlay.backgroundColor
 		radius: Plasmoid.configuration.roundCounter ? height / 2 : Math.max(2, height * 0.15)
 		border.width: Math.max(1, Math.round(height * 0.08))
@@ -28,13 +30,10 @@ Item {
 		PlasmaComponents3.Label {
 			id: badgeLabel
 			anchors.centerIn: parent
-			height: Math.round(parent.height * 0.8)
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
-			fontSizeMode: Text.Fit
-			font.pointSize: -1
-			font.pixelSize: 1024
-			minimumPixelSize: 5
+			// Fixed font derived from the badge height — no Text.Fit feedback.
+			font.pixelSize: Math.max(5, Math.round(badgeRect.height * 0.7))
 			color: overlay.textColor
 			font.weight: Font.Black
 		}

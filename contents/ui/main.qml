@@ -48,6 +48,11 @@ PlasmoidItem {
 			}
 		}
 
+		// Keep the compact icon square on a panel (don't let it stretch to
+		// fill the panel length). Restores the original's iconSizeHints cap.
+		Layout.maximumWidth: Plasmoid.formFactor === PlasmaCore.Types.Horizontal ? compactRoot.height : -1
+		Layout.maximumHeight: Plasmoid.formFactor === PlasmaCore.Types.Vertical ? compactRoot.width : -1
+
 		Kirigami.Icon {
 			id: icon
 			anchors.fill: parent

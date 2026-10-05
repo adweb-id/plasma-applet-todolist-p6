@@ -34,6 +34,20 @@ ColumnLayout {
 			anchors.right: parent.right
 			spacing: Kirigami.Units.smallSpacing
 
+			PlasmaComponents3.ToolButton {
+				id: addLeftButton
+				visible: labelMouseArea.containsMouse
+				flat: true
+				icon.name: "list-add"
+				icon.width: Kirigami.Units.iconSizes.small
+				icon.height: Kirigami.Units.iconSizes.small
+				onClicked: noteItem.insertSection(index)
+
+				QQC2.ToolTip.text: i18n("Add a list to the left")
+				QQC2.ToolTip.visible: hovered
+				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			}
+
 			PlasmaComponents3.TextField {
 				id: textField
 				Layout.fillWidth: true
@@ -72,9 +86,26 @@ ColumnLayout {
 			}
 
 			PlasmaComponents3.ToolButton {
+				id: addRightButton
+				visible: labelMouseArea.containsMouse
+				flat: true
+				icon.name: "list-add"
+				icon.width: Kirigami.Units.iconSizes.small
+				icon.height: Kirigami.Units.iconSizes.small
+				onClicked: noteItem.insertSection(index + 1)
+
+				QQC2.ToolTip.text: i18n("Add a list to the right")
+				QQC2.ToolTip.visible: hovered
+				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			}
+
+			PlasmaComponents3.ToolButton {
 				id: deleteSectionButton
 				visible: container.sectionCount > 1 && labelMouseArea.containsMouse
-				icon.name: "trash-empty"
+				flat: true
+				icon.name: "edit-delete-remove"
+				icon.width: Kirigami.Units.iconSizes.small
+				icon.height: Kirigami.Units.iconSizes.small
 				onClicked: noteItem.removeSection(index)
 
 				QQC2.ToolTip.text: i18n("Delete this list")
@@ -87,6 +118,7 @@ ColumnLayout {
 	QQC2.ScrollView {
 		Layout.fillWidth: true
 		Layout.fillHeight: true
+		Layout.topMargin: Kirigami.Units.largeSpacing
 
 		NoteListView {
 			id: noteListView

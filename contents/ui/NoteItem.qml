@@ -256,6 +256,15 @@ Item {
 		numSections += 1
 	}
 
+	// Insert a new empty list so it appears at `insertIndex`, pushing the
+	// existing lists at/after that position to the right.
+	function insertSection(insertIndex) {
+		updateTodoData() // First make sure todoData is updated
+		todoData.splice(insertIndex, 0, { label: '', items: [] })
+		numSections += 1
+		updateAllModels()
+	}
+
 	function removeSection(sectionIndex) {
 		updateTodoData() // First make sure todoData is updated
 		todoData.splice(sectionIndex, 1)

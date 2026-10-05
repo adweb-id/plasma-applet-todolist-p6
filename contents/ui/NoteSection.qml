@@ -35,15 +35,15 @@ ColumnLayout {
 			spacing: Kirigami.Units.smallSpacing
 
 			PlasmaComponents3.ToolButton {
-				id: addLeftButton
-				visible: labelMouseArea.containsMouse
+				id: moveLeftButton
+				visible: index > 0 && labelMouseArea.containsMouse
 				flat: true
-				icon.name: "list-add"
+				icon.name: "go-previous-symbolic"
 				icon.width: Kirigami.Units.iconSizes.small
 				icon.height: Kirigami.Units.iconSizes.small
-				onClicked: noteItem.insertSection(index)
+				onClicked: noteItem.moveSection(index, index - 1)
 
-				QQC2.ToolTip.text: i18n("Add a list to the left")
+				QQC2.ToolTip.text: i18n("Move this list left")
 				QQC2.ToolTip.visible: hovered
 				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
 			}
@@ -86,7 +86,21 @@ ColumnLayout {
 			}
 
 			PlasmaComponents3.ToolButton {
-				id: addRightButton
+				id: moveRightButton
+				visible: index < container.sectionCount - 1 && labelMouseArea.containsMouse
+				flat: true
+				icon.name: "go-next-symbolic"
+				icon.width: Kirigami.Units.iconSizes.small
+				icon.height: Kirigami.Units.iconSizes.small
+				onClicked: noteItem.moveSection(index, index + 1)
+
+				QQC2.ToolTip.text: i18n("Move this list right")
+				QQC2.ToolTip.visible: hovered
+				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			}
+
+			PlasmaComponents3.ToolButton {
+				id: addButton
 				visible: labelMouseArea.containsMouse
 				flat: true
 				icon.name: "list-add"
@@ -94,7 +108,7 @@ ColumnLayout {
 				icon.height: Kirigami.Units.iconSizes.small
 				onClicked: noteItem.insertSection(index + 1)
 
-				QQC2.ToolTip.text: i18n("Add a list to the right")
+				QQC2.ToolTip.text: i18n("Add a new list")
 				QQC2.ToolTip.visible: hovered
 				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
 			}

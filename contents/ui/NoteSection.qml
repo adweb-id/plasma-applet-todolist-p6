@@ -15,6 +15,7 @@ ColumnLayout {
 	// Provided by FullRepresentation.
 	property var noteItem
 	property int sectionCount: 1
+	property bool popupOpen: true
 
 	property int contentHeight: textField.height + container.spacing + noteListView.contentHeight
 
@@ -26,7 +27,9 @@ ColumnLayout {
 		id: labelMouseArea
 		Layout.fillWidth: true
 		Layout.preferredHeight: labelRow.height
-		hoverEnabled: true
+		// Turn hover off while the popup is closed. This clears containsMouse,
+		// which otherwise stays stuck on if the popup closed while hovered.
+		hoverEnabled: container.popupOpen
 
 		RowLayout {
 			id: labelRow

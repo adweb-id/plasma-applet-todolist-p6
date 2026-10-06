@@ -14,10 +14,18 @@ FocusScope {
 	property var noteItem
 
 	property bool isDesktopContainment: false
+	property bool popupOpen: true
 
-	Layout.minimumWidth: Kirigami.Units.gridUnit * 10 * noteItem.numSections
+	// Each list has a fixed width. In the panel popup the width is locked to
+	// listWidth × number of lists, so it doesn't keep a stale saved size and
+	// can't be stretched. On the desktop the widget stays freely resizable.
+	readonly property int listWidth: Kirigami.Units.gridUnit * 18
+	readonly property int fixedWidth: listWidth * noteItem.numSections
+
+	Layout.minimumWidth: isDesktopContainment ? Kirigami.Units.gridUnit * 10 * noteItem.numSections : fixedWidth
+	Layout.maximumWidth: isDesktopContainment ? -1 : fixedWidth
 	Layout.minimumHeight: Kirigami.Units.gridUnit * 10
-	Layout.preferredWidth: Kirigami.Units.gridUnit * 20 * noteItem.numSections
+	Layout.preferredWidth: fixedWidth
 	Layout.preferredHeight: Math.min(Math.max(Kirigami.Units.gridUnit * 20, maxContentHeight), Screen.desktopAvailableHeight)
 
 	property int maxContentHeight: 0
@@ -51,6 +59,7 @@ FocusScope {
 				id: container
 				noteItem: fullRepresentation.noteItem
 				sectionCount: notesRepeater.count
+				popupOpen: fullRepresentation.popupOpen
 
 				onContentHeightChanged: {
 					fullRepresentation.updateMaxContentHeight()

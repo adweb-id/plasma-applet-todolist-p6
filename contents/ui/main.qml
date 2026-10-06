@@ -81,6 +81,8 @@ PlasmoidItem {
 	fullRepresentation: FullRepresentation {
 		noteItem: noteItemObj
 		isDesktopContainment: Plasmoid.location === PlasmaCore.Types.Floating
+		// Popup open (always true on the desktop, where there is no popup).
+		popupOpen: root.expanded || isDesktopContainment
 		Plasmoid.backgroundHints: (Plasmoid.location === PlasmaCore.Types.Floating && !Plasmoid.configuration.showBackground)
 			? PlasmaCore.Types.NoBackground
 			: PlasmaCore.Types.DefaultBackground

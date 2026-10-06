@@ -1,227 +1,224 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Indonesian translations for plasma_applet_id.adweb.todolist package.
+# Copyright (C) 2026 THE plasma_applet_id.adweb.todolist'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the plasma_applet_id.adweb.todolist package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Automatically generated, 2026.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_id.adweb.todolist\n"
 "Report-Msgid-Bugs-To: https://github.com/adweb-id/plasma-applet-todolist-p6\n"
 "POT-Creation-Date: 2026-10-06 08:45+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2026-10-06 08:43+0700\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: contents/config/config.qml:6
 msgid "General"
-msgstr ""
+msgstr "Umum"
 
 #: contents/ui/config/ConfigGeneral.qml:27
 msgid "Icon:"
-msgstr ""
+msgstr "Ikon:"
 
 #: contents/ui/config/ConfigGeneral.qml:35
 msgid "Choose…"
-msgstr ""
+msgstr "Pilih…"
 
 #: contents/ui/config/ConfigGeneral.qml:42
 msgid "Use the default icon"
-msgstr ""
+msgstr "Gunakan ikon bawaan"
 
 #: contents/ui/config/ConfigGeneral.qml:52
 msgid "Desktop Widget"
-msgstr ""
+msgstr "Widget Desktop"
 
 #: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:125
 msgid "Hide"
-msgstr ""
+msgstr "Sembunyikan"
 
 #: contents/ui/config/ConfigGeneral.qml:60
 msgid "Show background"
-msgstr ""
+msgstr "Tampilkan latar belakang"
 
 #: contents/ui/config/ConfigGeneral.qml:63
 msgid "Completed Items"
-msgstr ""
+msgstr "Item Selesai"
 
 #: contents/ui/config/ConfigGeneral.qml:67
 msgid "Show completed items"
-msgstr ""
+msgstr "Tampilkan item yang sudah selesai"
 
 #: contents/ui/config/ConfigGeneral.qml:71
 msgid "Delete on complete"
-msgstr ""
+msgstr "Hapus saat selesai"
 
 #: contents/ui/config/ConfigGeneral.qml:75
 msgid "Strikeout"
-msgstr ""
+msgstr "Coret"
 
 #: contents/ui/config/ConfigGeneral.qml:79
 msgid "Faded"
-msgstr ""
+msgstr "Pudar"
 
 #: contents/ui/config/ConfigGeneral.qml:82
 msgid "List Title Style"
-msgstr ""
+msgstr "Gaya Judul Daftar"
 
 #: contents/ui/config/ConfigGeneral.qml:86
 msgid "Bold"
-msgstr ""
+msgstr "Tebal"
 
 #: contents/ui/config/ConfigGeneral.qml:90
 msgid "Show outline"
-msgstr ""
+msgstr "Tampilkan garis tepi"
 
 #: contents/ui/config/ConfigGeneral.qml:93
 msgid "Panel Counter"
-msgstr ""
+msgstr "Penghitung Panel"
 
 #: contents/ui/config/ConfigGeneral.qml:97
 msgid "Show counter:"
-msgstr ""
+msgstr "Tampilkan penghitung:"
 
 #: contents/ui/config/ConfigGeneral.qml:101
 msgid "Never"
-msgstr ""
+msgstr "Tidak pernah"
 
 #: contents/ui/config/ConfigGeneral.qml:102
 msgid "When incomplete items are left"
-msgstr ""
+msgstr "Saat masih ada item yang belum selesai"
 
 #: contents/ui/config/ConfigGeneral.qml:103
 msgid "Always"
-msgstr ""
+msgstr "Selalu"
 
 #: contents/ui/config/ConfigGeneral.qml:110
 msgid "Use big counter"
-msgstr ""
+msgstr "Gunakan penghitung besar"
 
 #: contents/ui/config/ConfigGeneral.qml:114
 msgid "Use round counter"
-msgstr ""
+msgstr "Gunakan penghitung bulat"
 
 #: contents/ui/FullRepresentation.qml:87
 msgid "Undo"
-msgstr ""
+msgstr "Urungkan"
 
 #: contents/ui/FullRepresentation.qml:93
 msgid "Dismiss"
-msgstr ""
+msgstr "Tutup"
 
 #: contents/ui/main.qml:20
 msgid "TodoList"
-msgstr ""
+msgstr "TodoList"
 
 #: contents/ui/main.qml:22
 msgid "%1 item left"
 msgid_plural "%1 items left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 item tersisa"
 
 #: contents/ui/main.qml:23
 msgid "All done"
-msgstr ""
+msgstr "Semua selesai"
 
 #: contents/ui/main.qml:96
 msgid "Add List"
-msgstr ""
+msgstr "Tambah Daftar"
 
 #: contents/ui/main.qml:101
 msgid "Clear Completed"
-msgstr ""
+msgstr "Bersihkan yang Selesai"
 
 #: contents/ui/main.qml:109
 msgid "Export to File…"
-msgstr ""
+msgstr "Ekspor ke Berkas…"
 
 #: contents/ui/main.qml:114
 msgid "Import from File…"
-msgstr ""
+msgstr "Impor dari Berkas…"
 
 #: contents/ui/main.qml:119
 msgid "Delete on Complete"
-msgstr ""
+msgstr "Hapus Saat Selesai"
 
 #: contents/ui/main.qml:164
 msgid "Export Tasks"
-msgstr ""
+msgstr "Ekspor Tugas"
 
 #: contents/ui/main.qml:167 contents/ui/main.qml:187
 msgid "Markdown files (*.md)"
-msgstr ""
+msgstr "Berkas Markdown (*.md)"
 
 #: contents/ui/main.qml:167 contents/ui/main.qml:187
 msgid "Text files (*.txt)"
-msgstr ""
+msgstr "Berkas teks (*.txt)"
 
 #: contents/ui/main.qml:167 contents/ui/main.qml:187
 msgid "All files (*)"
-msgstr ""
+msgstr "Semua berkas (*)"
 
 #: contents/ui/main.qml:174
 msgid "Exported tasks to %1"
-msgstr ""
+msgstr "Tugas diekspor ke %1"
 
 #: contents/ui/main.qml:176
 msgid "Could not export: %1"
-msgstr ""
+msgstr "Gagal mengekspor: %1"
 
 #: contents/ui/main.qml:185
 msgid "Import Tasks"
-msgstr ""
+msgstr "Impor Tugas"
 
 #: contents/ui/main.qml:193
 msgid "Could not import: %1"
-msgstr ""
+msgstr "Gagal mengimpor: %1"
 
 #: contents/ui/main.qml:195
 msgid "The file is empty"
-msgstr ""
+msgstr "Berkas kosong"
 
 #: contents/ui/NoteItem.qml:90
 msgid "Tasks imported"
-msgstr ""
+msgstr "Tugas berhasil diimpor"
 
 #: contents/ui/NoteItem.qml:104
 msgid "No completed items to clear"
-msgstr ""
+msgstr "Tidak ada item selesai untuk dibersihkan"
 
 #: contents/ui/NoteItem.qml:109
 msgid "Cleared 1 completed item"
 msgid_plural "Cleared %1 completed items"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 item selesai dibersihkan"
 
 #: contents/ui/NoteItem.qml:347
 msgid "Deleted list \"%1\""
-msgstr ""
+msgstr "Daftar \"%1\" dihapus"
 
 #: contents/ui/NoteItem.qml:347
 msgid "Deleted list"
-msgstr ""
+msgstr "Daftar dihapus"
 
 #: contents/ui/NoteSection.qml:44
 msgid "List title"
-msgstr ""
+msgstr "Judul daftar"
 
 #: contents/ui/NoteSection.qml:90
 msgid "Move this list left"
-msgstr ""
+msgstr "Pindahkan daftar ini ke kiri"
 
 #: contents/ui/NoteSection.qml:107
 msgid "Move this list right"
-msgstr ""
+msgstr "Pindahkan daftar ini ke kanan"
 
 #: contents/ui/NoteSection.qml:124
 msgid "Delete this list"
-msgstr ""
+msgstr "Hapus daftar ini"
 
 #: contents/ui/NoteSection.qml:138
 msgid "Add a new list"
-msgstr ""
+msgstr "Tambah daftar baru"

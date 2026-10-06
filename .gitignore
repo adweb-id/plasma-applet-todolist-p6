@@ -1,4 +1,2 @@
 *.plasmoid
-translate/build
-translate/merge
 .claude/

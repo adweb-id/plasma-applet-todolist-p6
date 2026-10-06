@@ -38,6 +38,77 @@ Item {
 		}
 	}
 
+	// Message shown at the bottom of the popup, with an optional Undo.
+	// type: 'info', 'positive' or 'error'.
+	property string bannerText: ''
+	property string bannerType: 'info'
+	property bool canUndo: false
+	property string undoSnapshot: ''
+
+	Timer {
+		id: bannerTimer
+		interval: 10000
+		onTriggered: noteItem.clearBanner()
+	}
+
+	function notify(text, type) {
+		canUndo = false
+		undoSnapshot = ''
+		bannerType = type || 'info'
+		bannerText = text
+		bannerTimer.restart()
+	}
+	// Like notify(), but Undo restores `snapshot` (serialized lists).
+	function notifyUndo(text, snapshot) {
+		notify(text, 'info')
+		undoSnapshot = snapshot
+		canUndo = true
+	}
+	function clearBanner() {
+		bannerTimer.stop()
+		bannerText = ''
+		canUndo = false
+		undoSnapshot = ''
+	}
+	function undo() {
+		if (canUndo) {
+			restoreText(undoSnapshot)
+		}
+		clearBanner()
+	}
+
+	// Replace all lists with serialized `str` and save it.
+	function restoreText(str) {
+		deboucedSaveNoteTimer.stop()
+		saveNote(str || '')
+		loadNote()
+	}
+
+	function importText(str) {
+		var before = serializeTodoModel()
+		restoreText(str)
+		notifyUndo(i18n("Tasks imported"), before)
+	}
+
+	function clearCompleted() {
+		var before = serializeTodoModel()
+		updateTodoData()
+		var removed = 0
+		for (var s = 0; s < todoData.length; s++) {
+			var items = todoData[s].items
+			var kept = items.filter(function(item) { return item.status !== 'completed' })
+			removed += items.length - kept.length
+			todoData[s].items = kept
+		}
+		if (removed === 0) {
+			notify(i18n("No completed items to clear"), 'info')
+			return
+		}
+		updateAllModels()
+		saveNote()
+		notifyUndo(i18np("Cleared 1 completed item", "Cleared %1 completed items", removed), before)
+	}
+
 	Connections {
 		target: Plasmoid.configuration
 		function onNoteTextChanged() {
@@ -266,10 +337,14 @@ Item {
 	}
 
 	function removeSection(sectionIndex) {
+		var before = serializeTodoModel()
 		updateTodoData() // First make sure todoData is updated
+		var label = todoData[sectionIndex] ? todoData[sectionIndex].label : ''
 		todoData.splice(sectionIndex, 1)
 		numSections -= 1
 		updateAllModels()
+		saveNote()
+		notifyUndo(label ? i18n("Deleted list \"%1\"", label) : i18n("Deleted list"), before)
 	}
 
 	property var sectionList: { return {} }

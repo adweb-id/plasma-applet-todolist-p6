@@ -1,44 +1,27 @@
-> Version 7 of Zren's i18n scripts.
+# Translations
 
-With KDE Frameworks v5.37 and above, translations are bundled with the `*.plasmoid` file downloaded from the store.
+The widget's strings are written in English, so English needs no catalog.
+Available translations:
 
-## Install Translations
+- `id.po`: Indonesian
 
-Go to `~/.local/share/plasma/plasmoids/id.adweb.todolist/translate/` and run `sh ./build --restartplasma`.
+## Updating
 
-## New Translations
+After changing any `i18n(...)` string in the QML, run:
 
-1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/Zren/plasma-applet-todolist/issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
+```sh
+sh translate/build.sh
+```
 
-Or if you know how to make a pull request
+This regenerates `template.pot`, updates every `<lang>.po` from it, and
+compiles them into `contents/locale/<lang>/LC_MESSAGES/plasma_applet_id.adweb.todolist.mo`.
+New or changed strings show up untranslated (or marked fuzzy) in the `.po`
+files: translate them and run the script again.
 
-1. Copy the `template.pot` file and name it your locale's code (Eg: `en`/`de`/`fr`) with the extension `.po`. Then fill out all the `msgstr ""`.
+## Adding a language
 
-## Scripts
+```sh
+msginit --no-translator --locale=<lang> -i translate/template.pot -o translate/<lang>.po
+```
 
-* `sh ./merge` will parse the `i18n()` calls in the `*.qml` files and write it to the `template.pot` file. Then it will merge any changes into the `*.po` language files.
-* `sh ./build` will convert the `*.po` files to it's binary `*.mo` version and move it to `contents/locale/...` which will bundle the translations in the `*.plasmoid` without needing the user to manually install them.
-* `sh ./plasmoidlocaletest` will run `./build` then `plasmoidviewer` (part of `plasma-sdk`).
-
-## Links
-
-* https://zren.github.io/kde/docs/widget/#translations-i18n
-* https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
-* https://api.kde.org/frameworks/ki18n/html/prg_guide.html
-
-## Examples
-
-* https://l10n.kde.org/stats/gui/trunk-kf5/team/fr/plasma-desktop/
-* https://github.com/psifidotos/nowdock-plasmoid/tree/master/po
-* https://github.com/kotelnik/plasma-applet-redshift-control/tree/master/translations
-
-## Status
-|  Locale  |  Lines  | % Done|
-|----------|---------|-------|
-| Template |      28 |       |
-| fr       |   27/28 |   96% |
-| hr       |   17/28 |   60% |
-| nl       |   27/28 |   96% |
-| pt       |   27/28 |   96% |
-| ro       |   28/28 |  100% |
-| tr       |   27/28 |   96% |
+Translate the `msgstr` entries, then run `sh translate/build.sh`.

@@ -18,8 +18,12 @@ lists with headings. This is a **Plasma 6 / Qt6 port** of Chris Holland's
 - Incomplete-item counter badge on the panel icon
 - Strikeout / fade completed items, optional "delete on complete"
 - Configurable counter, title style, and background
-
-Reorder items with **Ctrl+↑ / Ctrl+↓**.
+- Reorder items by dragging the handle, or with **Ctrl+↑ / Ctrl+↓**
+- Add, move and delete lists from each list's title
+- Clear all completed items at once (right-click menu)
+- Undo after deleting a list, clearing completed items or importing
+- Export and import tasks as a Markdown file (right-click menu)
+- Translations: Indonesian (`translate/`)
 
 ## Install
 
@@ -37,8 +41,8 @@ Then right-click your panel or desktop → **Add Widgets…** → search **TodoL
 
 Some Plasma 5 features were dropped because the underlying APIs were removed in
 Plasma 6 (notably the Notes `NoteManager` storage and the shader-based badge).
-Tasks are now stored in the widget's own configuration. Mouse drag-to-reorder
-and the delete-confirmation dialog were also dropped; see `PORTING.md`.
+Tasks are now stored in the widget's own configuration; use **Export to File…**
+to back them up. See `PORTING.md`.
 
 ## Credits
 

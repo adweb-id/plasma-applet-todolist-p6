@@ -12,11 +12,12 @@
         ],
         "Category": "Utilities",
         "Description": "A todo list organized into checkable items, ported to Plasma 6.",
+        "Description[id]": "Daftar tugas berisi item yang bisa dicentang, dibuat ulang untuk Plasma 6.",
         "Icon": "korg-todo",
         "Id": "id.adweb.todolist",
         "License": "GPL-2.0-or-later",
         "Name": "TodoList",
-        "Version": "14",
+        "Version": "15",
         "Website": "https://github.com/adweb-id/plasma-applet-todolist-p6"
     },
     "X-Plasma-API-Minimum-Version": "6.0"

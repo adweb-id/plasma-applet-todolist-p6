@@ -40,31 +40,62 @@ FocusScope {
 		maxContentHeight = maxHeight
 	}
 
-	RowLayout {
-		id: notesRow
+	ColumnLayout {
 		anchors.fill: parent
+		spacing: Kirigami.Units.smallSpacing
 
-		opacity: Plasmoid.configuration.hidden ? 0 : 1
-		visible: opacity > 0
+		RowLayout {
+			id: notesRow
+			Layout.fillWidth: true
+			Layout.fillHeight: true
 
-		Behavior on opacity {
-			NumberAnimation { duration: 400 }
-		}
+			opacity: Plasmoid.configuration.hidden ? 0 : 1
+			visible: opacity > 0
 
-		Repeater {
-			id: notesRepeater
-			model: fullRepresentation.noteItem.numSections
+			Behavior on opacity {
+				NumberAnimation { duration: 400 }
+			}
 
-			NoteSection {
-				id: container
-				noteItem: fullRepresentation.noteItem
-				sectionCount: notesRepeater.count
-				popupOpen: fullRepresentation.popupOpen
+			Repeater {
+				id: notesRepeater
+				model: fullRepresentation.noteItem.numSections
 
-				onContentHeightChanged: {
-					fullRepresentation.updateMaxContentHeight()
+				NoteSection {
+					id: container
+					noteItem: fullRepresentation.noteItem
+					sectionCount: notesRepeater.count
+					popupOpen: fullRepresentation.popupOpen
+
+					onContentHeightChanged: {
+						fullRepresentation.updateMaxContentHeight()
+					}
 				}
 			}
+		}
+
+		// Message bar with an optional Undo (deleted list, cleared items,
+		// import, export results). State lives in noteItem.
+		Kirigami.InlineMessage {
+			Layout.fillWidth: true
+			visible: fullRepresentation.noteItem.bannerText !== ''
+			text: fullRepresentation.noteItem.bannerText
+			type: fullRepresentation.noteItem.bannerType === 'error' ? Kirigami.MessageType.Error
+				: fullRepresentation.noteItem.bannerType === 'positive' ? Kirigami.MessageType.Positive
+				: Kirigami.MessageType.Information
+			actions: [
+				Kirigami.Action {
+					text: i18n("Undo")
+					icon.name: "edit-undo"
+					visible: fullRepresentation.noteItem.canUndo
+					onTriggered: fullRepresentation.noteItem.undo()
+				},
+				Kirigami.Action {
+					text: i18n("Dismiss")
+					icon.name: "dialog-close"
+					displayHint: Kirigami.DisplayHint.IconOnly
+					onTriggered: fullRepresentation.noteItem.clearBanner()
+				}
+			]
 		}
 	}
 }

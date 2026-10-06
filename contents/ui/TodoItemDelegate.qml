@@ -44,6 +44,18 @@ MouseArea {
 		anchors.right: parent.right
 		spacing: Kirigami.Units.smallSpacing
 
+		// Drag to reorder. Always takes up space so rows don't shift; only
+		// visible on hover. Disabled on the empty "new item" row at the end.
+		Kirigami.ListItemDragHandle {
+			Layout.alignment: Qt.AlignTop
+			listItem: todoItemDelegate
+			listView: todoItemDelegate.ListView.view
+			enabled: model.title !== ''
+			opacity: enabled && (todoItemDelegate.containsMouse || dragActive) ? 1 : 0
+			onMoveRequested: (oldIndex, newIndex) => todoModel.move(oldIndex, newIndex, 1)
+			onDropped: todoModel.update() // save the new order
+		}
+
 		Item {
 			id: indentItem
 			Layout.preferredWidth: checkbox.width * model.indent
@@ -156,6 +168,7 @@ MouseArea {
 					if (index > 0) {
 						delayedSelect.cursorPos = cursorPosition
 						todoModel.move(index, index-1, 1)
+						todoModel.update() // save the new order
 						delayedSelect.restart()
 					}
 				} else if (event.key == Qt.Key_Down && event.modifiers == Qt.ControlModifier) {
@@ -163,6 +176,7 @@ MouseArea {
 					if (index < todoModel.count-1) {
 						delayedSelect.cursorPos = cursorPosition
 						todoModel.move(index, index+1, 1)
+						todoModel.update() // save the new order
 						delayedSelect.restart()
 					}
 				}

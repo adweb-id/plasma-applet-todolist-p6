@@ -17,7 +17,8 @@ Kirigami.FormLayout {
 	property alias cfg_fadeCompleted: fadeBox.checked
 	property alias cfg_listTitleBold: titleBoldBox.checked
 	property alias cfg_listTitleOutline: titleOutlineBox.checked
-	property alias cfg_showCounter: counterCombo.currentValue
+	// Plain property: Plasma fills it with the saved value and saves it back.
+	property string cfg_showCounter
 	property alias cfg_bigCounter: bigCounterBox.checked
 	property alias cfg_roundCounter: roundCounterBox.checked
 	property alias cfg_showCompletedItems: showCompletedBox.checked
@@ -101,15 +102,8 @@ Kirigami.FormLayout {
 			{ value: "Incomplete", text: i18n("When incomplete items are left") },
 			{ value: "Always", text: i18n("Always") },
 		]
-		// Initialize selection from the stored config value.
-		Component.onCompleted: {
-			for (var i = 0; i < model.length; i++) {
-				if (model[i].value === plasmoid.configuration.showCounter) {
-					currentIndex = i
-					break
-				}
-			}
-		}
+		currentIndex: Math.max(0, indexOfValue(page.cfg_showCounter))
+		onActivated: page.cfg_showCounter = currentValue
 	}
 	QQC2.CheckBox {
 		id: bigCounterBox

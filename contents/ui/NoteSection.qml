@@ -37,20 +37,6 @@ ColumnLayout {
 			anchors.right: parent.right
 			spacing: Kirigami.Units.smallSpacing
 
-			PlasmaComponents3.ToolButton {
-				id: moveLeftButton
-				visible: index > 0 && labelMouseArea.containsMouse
-				flat: true
-				icon.name: "go-previous-symbolic"
-				icon.width: Kirigami.Units.iconSizes.small
-				icon.height: Kirigami.Units.iconSizes.small
-				onClicked: noteItem.moveSection(index, index - 1)
-
-				QQC2.ToolTip.text: i18n("Move this list left")
-				QQC2.ToolTip.visible: hovered
-				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
-			}
-
 			PlasmaComponents3.TextField {
 				id: textField
 				Layout.fillWidth: true
@@ -89,8 +75,28 @@ ColumnLayout {
 			}
 
 			PlasmaComponents3.ToolButton {
+				id: moveLeftButton
+				// Always takes up space (no layout shift); only fades in/out.
+				opacity: (labelMouseArea.containsMouse && index > 0) ? 1 : 0
+				enabled: (labelMouseArea.containsMouse && index > 0)
+				Behavior on opacity { NumberAnimation { duration: Kirigami.Units.shortDuration } }
+				flat: true
+				icon.name: "go-previous-symbolic"
+				icon.width: Kirigami.Units.iconSizes.small
+				icon.height: Kirigami.Units.iconSizes.small
+				onClicked: noteItem.moveSection(index, index - 1)
+
+				QQC2.ToolTip.text: i18n("Move this list left")
+				QQC2.ToolTip.visible: hovered
+				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			}
+
+			PlasmaComponents3.ToolButton {
 				id: moveRightButton
-				visible: index < container.sectionCount - 1 && labelMouseArea.containsMouse
+				// Always takes up space (no layout shift); only fades in/out.
+				opacity: (labelMouseArea.containsMouse && index < container.sectionCount - 1) ? 1 : 0
+				enabled: (labelMouseArea.containsMouse && index < container.sectionCount - 1)
+				Behavior on opacity { NumberAnimation { duration: Kirigami.Units.shortDuration } }
 				flat: true
 				icon.name: "go-next-symbolic"
 				icon.width: Kirigami.Units.iconSizes.small
@@ -103,22 +109,11 @@ ColumnLayout {
 			}
 
 			PlasmaComponents3.ToolButton {
-				id: addButton
-				visible: labelMouseArea.containsMouse
-				flat: true
-				icon.name: "list-add"
-				icon.width: Kirigami.Units.iconSizes.small
-				icon.height: Kirigami.Units.iconSizes.small
-				onClicked: noteItem.insertSection(index + 1)
-
-				QQC2.ToolTip.text: i18n("Add a new list")
-				QQC2.ToolTip.visible: hovered
-				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
-			}
-
-			PlasmaComponents3.ToolButton {
 				id: deleteSectionButton
-				visible: container.sectionCount > 1 && labelMouseArea.containsMouse
+				// Always takes up space (no layout shift); only fades in/out.
+				opacity: (labelMouseArea.containsMouse && container.sectionCount > 1) ? 1 : 0
+				enabled: (labelMouseArea.containsMouse && container.sectionCount > 1)
+				Behavior on opacity { NumberAnimation { duration: Kirigami.Units.shortDuration } }
 				flat: true
 				icon.name: "edit-delete-remove"
 				icon.width: Kirigami.Units.iconSizes.small
@@ -126,6 +121,20 @@ ColumnLayout {
 				onClicked: noteItem.removeSection(index)
 
 				QQC2.ToolTip.text: i18n("Delete this list")
+				QQC2.ToolTip.visible: hovered
+				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
+			}
+
+			// Always visible.
+			PlasmaComponents3.ToolButton {
+				id: addButton
+				flat: true
+				icon.name: "list-add"
+				icon.width: Kirigami.Units.iconSizes.small
+				icon.height: Kirigami.Units.iconSizes.small
+				onClicked: noteItem.insertSection(index + 1)
+
+				QQC2.ToolTip.text: i18n("Add a new list")
 				QQC2.ToolTip.visible: hovered
 				QQC2.ToolTip.delay: Kirigami.Units.toolTipDelay
 			}

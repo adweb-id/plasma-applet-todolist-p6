@@ -4,7 +4,7 @@
 
 	<group name="General">
 		<entry name="icon" type="String">
-			<default>view-list-symbolic</default>
+			<default>korg-todo</default>
 		</entry>
 		<entry name="noteText" type="String">
 			<default></default>

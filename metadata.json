@@ -9,7 +9,7 @@
         ],
         "Category": "Utilities",
         "Description": "A todo list organized into checkable items, ported to Plasma 6.",
-        "Icon": "view-list-symbolic",
+        "Icon": "korg-todo",
         "Id": "com.github.zren.todolist",
         "License": "GPL-2.0-or-later",
         "Name": "TodoList",

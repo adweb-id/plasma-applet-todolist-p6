@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls as QQC2
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import org.kde.iconthemes as KIconThemes
 
 Kirigami.FormLayout {
 	id: page
@@ -28,6 +29,23 @@ Kirigami.FormLayout {
 			Layout.preferredWidth: Kirigami.Units.gridUnit * 12
 			placeholderText: "korg-todo"
 		}
+		QQC2.Button {
+			icon.name: iconField.text.trim() || "korg-todo"
+			text: i18n("Choose…")
+			onClicked: page.iconDialog.open()
+		}
+		QQC2.ToolButton {
+			icon.name: "edit-undo"
+			enabled: iconField.text !== ""
+			onClicked: iconField.text = ""
+			QQC2.ToolTip.text: i18n("Use the default icon")
+			QQC2.ToolTip.visible: hovered
+		}
+	}
+
+	// KDE's searchable icon picker.
+	readonly property var iconDialog: KIconThemes.IconDialog {
+		onIconNameChanged: iconName => { if (iconName) iconField.text = iconName }
 	}
 
 	Kirigami.Separator { Kirigami.FormData.isSection: true; Kirigami.FormData.label: i18n("Desktop Widget") }

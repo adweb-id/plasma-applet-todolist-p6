@@ -4,17 +4,20 @@
         "Authors": [
             {
                 "Email": "zrenfire@gmail.com",
-                "Name": "Chris Holland"
+                "Name": "Chris Holland (original author)"
+            },
+            {
+                "Name": "adweb-id (Plasma 6 port)"
             }
         ],
         "Category": "Utilities",
         "Description": "A todo list organized into checkable items, ported to Plasma 6.",
         "Icon": "korg-todo",
-        "Id": "com.github.zren.todolist",
+        "Id": "id.adweb.todolist",
         "License": "GPL-2.0-or-later",
         "Name": "TodoList",
         "Version": "14",
-        "Website": "https://github.com/Zren/plasma-applet-todolist"
+        "Website": "https://github.com/adweb-id/plasma-applet-todolist-p6"
     },
     "X-Plasma-API-Minimum-Version": "6.0"
 }

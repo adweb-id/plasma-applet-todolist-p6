@@ -11,7 +11,8 @@ PlasmoidItem {
 		id: noteItemObj
 	}
 
-	Plasmoid.icon: Plasmoid.configuration.icon
+	// Fall back to the default icon when the setting is empty.
+	Plasmoid.icon: (Plasmoid.configuration.icon || "").trim() || "korg-todo"
 
 	toolTipMainText: i18n("TodoList")
 	toolTipSubText: noteItemObj.hasIncomplete

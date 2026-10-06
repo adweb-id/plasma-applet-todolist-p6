@@ -1,6 +1,6 @@
 # Authors & Attribution
 
-This widget (**TodoList**, plugin id `com.github.zren.todolist`) is a
+This widget (**TodoList**, plugin id `id.adweb.todolist`; the original used `com.github.zren.todolist`) is a
 **Plasma 6 port** of an existing Plasma 5 widget. It is **not** original work.
 
 ## Original author

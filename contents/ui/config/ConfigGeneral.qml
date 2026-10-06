@@ -26,6 +26,7 @@ Kirigami.FormLayout {
 		QQC2.TextField {
 			id: iconField
 			Layout.preferredWidth: Kirigami.Units.gridUnit * 12
+			placeholderText: "korg-todo"
 		}
 	}
 

@@ -41,6 +41,7 @@ ColumnLayout {
 				id: textField
 				Layout.fillWidth: true
 				text: noteSection ? noteSection.label : ''
+				placeholderText: i18n("List title")
 
 				background: Item {}
 				font.pointSize: -1

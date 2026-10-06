@@ -96,14 +96,14 @@ PlasmoidItem {
 		},
 		PlasmaCore.Action {
 			text: i18n("Delete on Complete")
-			checkable: true
-			checked: Plasmoid.configuration.deleteOnComplete
+			// Not a checkbox: show a check icon when on, like the other items' icons.
+			icon.name: Plasmoid.configuration.deleteOnComplete ? "checkmark" : ""
 			onTriggered: Plasmoid.configuration.deleteOnComplete = !Plasmoid.configuration.deleteOnComplete
 		},
 		PlasmaCore.Action {
 			text: i18n("Hide")
-			checkable: true
-			checked: Plasmoid.configuration.hidden
+			// Not a checkbox: show a check icon when on, like the other items' icons.
+			icon.name: Plasmoid.configuration.hidden ? "checkmark" : ""
 			visible: Plasmoid.location === PlasmaCore.Types.Floating
 			onTriggered: Plasmoid.configuration.hidden = !Plasmoid.configuration.hidden
 		}

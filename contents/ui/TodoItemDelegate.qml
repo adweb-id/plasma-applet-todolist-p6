@@ -9,7 +9,10 @@ MouseArea {
 	implicitHeight: todoItemRow.implicitHeight
 	hoverEnabled: true
 
-	property var todoModel: ListView.view.model
+	required property ListView listView
+	property bool currentItem: false
+	property var todoModel: listView.model
+	readonly property bool hovered: containsMouse
 	readonly property bool isCompleted: model.status == 'completed'
 
 	function setComplete(completed) {
@@ -49,7 +52,7 @@ MouseArea {
 		Kirigami.ListItemDragHandle {
 			Layout.alignment: Qt.AlignTop
 			listItem: todoItemDelegate
-			listView: todoItemDelegate.ListView.view
+			listView: todoItemDelegate.listView
 			enabled: model.title !== ''
 			opacity: enabled && (todoItemDelegate.containsMouse || dragActive) ? 1 : 0
 			onMoveRequested: (oldIndex, newIndex) => todoModel.move(oldIndex, newIndex, 1)
@@ -77,10 +80,10 @@ MouseArea {
 			textMargin: 0
 			wrapMode: TextEdit.Wrap
 
-			focus: todoItemDelegate.ListView.isCurrentItem
+			focus: todoItemDelegate.currentItem
 			onActiveFocusChanged: {
 				if (activeFocus) {
-					todoItemDelegate.ListView.view.currentIndex = index
+					todoItemDelegate.listView.currentIndex = index
 				}
 			}
 
@@ -158,7 +161,7 @@ MouseArea {
 					event.accepted = true
 				} else if (event.key == Qt.Key_Return && event.modifiers == Qt.NoModifier) {
 					event.accepted = true
-					todoItemDelegate.ListView.view.currentIndex = index + 1
+					todoItemDelegate.listView.currentIndex = index + 1
 				} else if ((event.key == Qt.Key_Return && event.modifiers == Qt.ControlModifier)
 						|| (event.key == Qt.Key_Return && event.modifiers == Qt.AltModifier)) {
 					event.accepted = true

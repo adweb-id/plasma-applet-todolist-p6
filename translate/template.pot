@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_id.adweb.todolist\n"
 "Report-Msgid-Bugs-To: https://github.com/adweb-id/plasma-applet-todolist-p6\n"
-"POT-Creation-Date: 2026-10-06 08:45+0700\n"
+"POT-Creation-Date: 2026-11-14 15:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,187 +22,219 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:27
-msgid "Icon:"
+#: contents/ui/config/ConfigGeneral.qml:30
+msgid "Markdown file:"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:35
+#: contents/ui/config/ConfigGeneral.qml:34
+msgid "Optional: ~/todo.md"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:37
+#: contents/ui/config/ConfigGeneral.qml:73
 msgid "Choose…"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:42
-msgid "Use the default icon"
+#: contents/ui/config/ConfigGeneral.qml:45
+msgid "Store tasks in the widget configuration"
 msgstr ""
 
 #: contents/ui/config/ConfigGeneral.qml:52
-msgid "Desktop Widget"
+msgid "Select Task Storage"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:125
-msgid "Hide"
+#: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:146
+#: contents/ui/main.qml:166
+msgid "Markdown files (*.md)"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:60
-msgid "Show background"
+#: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:146
+#: contents/ui/main.qml:166
+msgid "All files (*)"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:63
-msgid "Completed Items"
+#: contents/ui/config/ConfigGeneral.qml:65
+msgid "Icon:"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:67
-msgid "Show completed items"
-msgstr ""
-
-#: contents/ui/config/ConfigGeneral.qml:71
-msgid "Delete on complete"
-msgstr ""
-
-#: contents/ui/config/ConfigGeneral.qml:75
-msgid "Strikeout"
-msgstr ""
-
-#: contents/ui/config/ConfigGeneral.qml:79
-msgid "Faded"
-msgstr ""
-
-#: contents/ui/config/ConfigGeneral.qml:82
-msgid "List Title Style"
-msgstr ""
-
-#: contents/ui/config/ConfigGeneral.qml:86
-msgid "Bold"
+#: contents/ui/config/ConfigGeneral.qml:80
+msgid "Use the default icon"
 msgstr ""
 
 #: contents/ui/config/ConfigGeneral.qml:90
-msgid "Show outline"
+msgid "Desktop Widget"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:93
-msgid "Panel Counter"
+#: contents/ui/config/ConfigGeneral.qml:94 contents/ui/main.qml:132
+msgid "Hide"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:97
-msgid "Show counter:"
+#: contents/ui/config/ConfigGeneral.qml:98
+msgid "Show background"
 msgstr ""
 
 #: contents/ui/config/ConfigGeneral.qml:101
+msgid "Completed Items"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:105
+msgid "Show completed items"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:109
+msgid "Delete on complete"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:113
+msgid "Strikeout"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:117
+msgid "Faded"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:120
+msgid "List Title Style"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:124
+msgid "Bold"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:128
+msgid "Show outline"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:131
+msgid "Panel Counter"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:135
+msgid "Show counter:"
+msgstr ""
+
+#: contents/ui/config/ConfigGeneral.qml:139
 msgid "Never"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:102
+#: contents/ui/config/ConfigGeneral.qml:140
 msgid "When incomplete items are left"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:103
+#: contents/ui/config/ConfigGeneral.qml:141
 msgid "Always"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:110
+#: contents/ui/config/ConfigGeneral.qml:148
 msgid "Use big counter"
 msgstr ""
 
-#: contents/ui/config/ConfigGeneral.qml:114
+#: contents/ui/config/ConfigGeneral.qml:152
 msgid "Use round counter"
 msgstr ""
 
-#: contents/ui/FullRepresentation.qml:87
+#: contents/ui/FullRepresentation.qml:88
 msgid "Undo"
 msgstr ""
 
-#: contents/ui/FullRepresentation.qml:93
+#: contents/ui/FullRepresentation.qml:94
 msgid "Dismiss"
 msgstr ""
 
-#: contents/ui/main.qml:20
+#: contents/ui/main.qml:24
 msgid "TodoList"
 msgstr ""
 
-#: contents/ui/main.qml:22
+#: contents/ui/main.qml:26
 msgid "%1 item left"
 msgid_plural "%1 items left"
 msgstr[0] ""
 msgstr[1] ""
 
-#: contents/ui/main.qml:23
+#: contents/ui/main.qml:27
 msgid "All done"
 msgstr ""
 
-#: contents/ui/main.qml:96
+#: contents/ui/main.qml:100
 msgid "Add List"
 msgstr ""
 
-#: contents/ui/main.qml:101
+#: contents/ui/main.qml:106
 msgid "Clear Completed"
 msgstr ""
 
-#: contents/ui/main.qml:109
+#: contents/ui/main.qml:115
 msgid "Export to File…"
 msgstr ""
 
-#: contents/ui/main.qml:114
+#: contents/ui/main.qml:120
 msgid "Import from File…"
 msgstr ""
 
-#: contents/ui/main.qml:119
+#: contents/ui/main.qml:126
 msgid "Delete on Complete"
 msgstr ""
 
-#: contents/ui/main.qml:164
+#: contents/ui/main.qml:143
 msgid "Export Tasks"
 msgstr ""
 
-#: contents/ui/main.qml:167 contents/ui/main.qml:187
-msgid "Markdown files (*.md)"
-msgstr ""
-
-#: contents/ui/main.qml:167 contents/ui/main.qml:187
+#: contents/ui/main.qml:146 contents/ui/main.qml:166
 msgid "Text files (*.txt)"
 msgstr ""
 
-#: contents/ui/main.qml:167 contents/ui/main.qml:187
-msgid "All files (*)"
-msgstr ""
-
-#: contents/ui/main.qml:174
+#: contents/ui/main.qml:153
 msgid "Exported tasks to %1"
 msgstr ""
 
-#: contents/ui/main.qml:176
+#: contents/ui/main.qml:155
 msgid "Could not export: %1"
 msgstr ""
 
-#: contents/ui/main.qml:185
+#: contents/ui/main.qml:164
 msgid "Import Tasks"
 msgstr ""
 
-#: contents/ui/main.qml:193
+#: contents/ui/main.qml:172
 msgid "Could not import: %1"
 msgstr ""
 
-#: contents/ui/main.qml:195
+#: contents/ui/main.qml:174
+msgid "Cannot import while task storage is unavailable"
+msgstr ""
+
+#: contents/ui/main.qml:176
 msgid "The file is empty"
 msgstr ""
 
-#: contents/ui/NoteItem.qml:90
+#: contents/ui/NoteItem.qml:40 contents/ui/NoteItem.qml:89
+#: contents/ui/NoteItem.qml:135
+msgid "Could not load tasks from %1: %2"
+msgstr ""
+
+#: contents/ui/NoteItem.qml:53
+msgid "Could not save tasks to %1: %2"
+msgstr ""
+
+#: contents/ui/NoteItem.qml:221
 msgid "Tasks imported"
 msgstr ""
 
-#: contents/ui/NoteItem.qml:104
+#: contents/ui/NoteItem.qml:235
 msgid "No completed items to clear"
 msgstr ""
 
-#: contents/ui/NoteItem.qml:109
+#: contents/ui/NoteItem.qml:240
 msgid "Cleared 1 completed item"
 msgid_plural "Cleared %1 completed items"
 msgstr[0] ""
 msgstr[1] ""
 
-#: contents/ui/NoteItem.qml:347
+#: contents/ui/NoteItem.qml:483
 msgid "Deleted list \"%1\""
 msgstr ""
 
-#: contents/ui/NoteItem.qml:347
+#: contents/ui/NoteItem.qml:483
 msgid "Deleted list"
 msgstr ""
 

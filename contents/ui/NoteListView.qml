@@ -5,7 +5,7 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
 ListView {
-	id: listView
+	id: taskListView
 	Layout.fillWidth: true
 	Layout.fillHeight: true
 
@@ -15,8 +15,18 @@ ListView {
 
 	QQC2.ScrollBar.vertical: QQC2.ScrollBar {}
 
-	delegate: TodoItemDelegate {
-		width: ListView.view.width
+	// Kirigami reparents the draggable row; keep a delegate in the layout.
+	delegate: Item {
+		id: delegateRoot
+		width: taskListView.width
+		implicitHeight: taskRow.implicitHeight
+
+		TodoItemDelegate {
+			id: taskRow
+			width: taskListView.width
+			listView: taskListView
+			currentItem: delegateRoot.ListView.isCurrentItem
+		}
 	}
 
 	remove: Transition {
@@ -32,7 +42,7 @@ ListView {
 	Timer {
 		id: deboucedPositionViewAtEnd
 		interval: 1000
-		onTriggered: listView.positionViewAtEnd()
+		onTriggered: taskListView.positionViewAtEnd()
 	}
 
 	onCountChanged: {

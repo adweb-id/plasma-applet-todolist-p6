@@ -23,6 +23,7 @@ lists with headings. This is a **Plasma 6 / Qt6 port** of Chris Holland's
 - Clear all completed items at once (right-click menu)
 - Undo after deleting a list, clearing completed items or importing
 - Export and import tasks as a Markdown file (right-click menu)
+- Optional external Markdown file for task storage
 - Translations: Indonesian (`translate/`)
 
 ## Install

@@ -1,2 +1,3 @@
 *.plasmoid
 .claude/
+.idea/

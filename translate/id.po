@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasma_applet_id.adweb.todolist\n"
 "Report-Msgid-Bugs-To: https://github.com/adweb-id/plasma-applet-todolist-p6\n"
-"POT-Creation-Date: 2026-10-06 08:45+0700\n"
-"PO-Revision-Date: 2026-10-06 08:43+0700\n"
+"POT-Creation-Date: 2026-11-14 15:33+0100\n"
+"PO-Revision-Date: 2026-11-14 15:33+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: id\n"
@@ -21,185 +21,217 @@ msgstr ""
 msgid "General"
 msgstr "Umum"
 
-#: contents/ui/config/ConfigGeneral.qml:27
-msgid "Icon:"
-msgstr "Ikon:"
+#: contents/ui/config/ConfigGeneral.qml:30
+msgid "Markdown file:"
+msgstr "Berkas Markdown:"
 
-#: contents/ui/config/ConfigGeneral.qml:35
+#: contents/ui/config/ConfigGeneral.qml:34
+msgid "Optional: ~/todo.md"
+msgstr "Opsional: ~/todo.md"
+
+#: contents/ui/config/ConfigGeneral.qml:37
+#: contents/ui/config/ConfigGeneral.qml:73
 msgid "Choose…"
 msgstr "Pilih…"
 
-#: contents/ui/config/ConfigGeneral.qml:42
+#: contents/ui/config/ConfigGeneral.qml:45
+msgid "Store tasks in the widget configuration"
+msgstr "Simpan tugas dalam konfigurasi widget"
+
+#: contents/ui/config/ConfigGeneral.qml:52
+msgid "Select Task Storage"
+msgstr "Pilih Penyimpanan Tugas"
+
+#: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:146
+#: contents/ui/main.qml:166
+msgid "Markdown files (*.md)"
+msgstr "Berkas Markdown (*.md)"
+
+#: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:146
+#: contents/ui/main.qml:166
+msgid "All files (*)"
+msgstr "Semua berkas (*)"
+
+#: contents/ui/config/ConfigGeneral.qml:65
+msgid "Icon:"
+msgstr "Ikon:"
+
+#: contents/ui/config/ConfigGeneral.qml:80
 msgid "Use the default icon"
 msgstr "Gunakan ikon bawaan"
 
-#: contents/ui/config/ConfigGeneral.qml:52
+#: contents/ui/config/ConfigGeneral.qml:90
 msgid "Desktop Widget"
 msgstr "Widget Desktop"
 
-#: contents/ui/config/ConfigGeneral.qml:56 contents/ui/main.qml:125
+#: contents/ui/config/ConfigGeneral.qml:94 contents/ui/main.qml:132
 msgid "Hide"
 msgstr "Sembunyikan"
 
-#: contents/ui/config/ConfigGeneral.qml:60
+#: contents/ui/config/ConfigGeneral.qml:98
 msgid "Show background"
 msgstr "Tampilkan latar belakang"
 
-#: contents/ui/config/ConfigGeneral.qml:63
+#: contents/ui/config/ConfigGeneral.qml:101
 msgid "Completed Items"
 msgstr "Item Selesai"
 
-#: contents/ui/config/ConfigGeneral.qml:67
+#: contents/ui/config/ConfigGeneral.qml:105
 msgid "Show completed items"
 msgstr "Tampilkan item yang sudah selesai"
 
-#: contents/ui/config/ConfigGeneral.qml:71
+#: contents/ui/config/ConfigGeneral.qml:109
 msgid "Delete on complete"
 msgstr "Hapus saat selesai"
 
-#: contents/ui/config/ConfigGeneral.qml:75
+#: contents/ui/config/ConfigGeneral.qml:113
 msgid "Strikeout"
 msgstr "Coret"
 
-#: contents/ui/config/ConfigGeneral.qml:79
+#: contents/ui/config/ConfigGeneral.qml:117
 msgid "Faded"
 msgstr "Pudar"
 
-#: contents/ui/config/ConfigGeneral.qml:82
+#: contents/ui/config/ConfigGeneral.qml:120
 msgid "List Title Style"
 msgstr "Gaya Judul Daftar"
 
-#: contents/ui/config/ConfigGeneral.qml:86
+#: contents/ui/config/ConfigGeneral.qml:124
 msgid "Bold"
 msgstr "Tebal"
 
-#: contents/ui/config/ConfigGeneral.qml:90
+#: contents/ui/config/ConfigGeneral.qml:128
 msgid "Show outline"
 msgstr "Tampilkan garis tepi"
 
-#: contents/ui/config/ConfigGeneral.qml:93
+#: contents/ui/config/ConfigGeneral.qml:131
 msgid "Panel Counter"
 msgstr "Penghitung Panel"
 
-#: contents/ui/config/ConfigGeneral.qml:97
+#: contents/ui/config/ConfigGeneral.qml:135
 msgid "Show counter:"
 msgstr "Tampilkan penghitung:"
 
-#: contents/ui/config/ConfigGeneral.qml:101
+#: contents/ui/config/ConfigGeneral.qml:139
 msgid "Never"
 msgstr "Tidak pernah"
 
-#: contents/ui/config/ConfigGeneral.qml:102
+#: contents/ui/config/ConfigGeneral.qml:140
 msgid "When incomplete items are left"
 msgstr "Saat masih ada item yang belum selesai"
 
-#: contents/ui/config/ConfigGeneral.qml:103
+#: contents/ui/config/ConfigGeneral.qml:141
 msgid "Always"
 msgstr "Selalu"
 
-#: contents/ui/config/ConfigGeneral.qml:110
+#: contents/ui/config/ConfigGeneral.qml:148
 msgid "Use big counter"
 msgstr "Gunakan penghitung besar"
 
-#: contents/ui/config/ConfigGeneral.qml:114
+#: contents/ui/config/ConfigGeneral.qml:152
 msgid "Use round counter"
 msgstr "Gunakan penghitung bulat"
 
-#: contents/ui/FullRepresentation.qml:87
+#: contents/ui/FullRepresentation.qml:88
 msgid "Undo"
 msgstr "Urungkan"
 
-#: contents/ui/FullRepresentation.qml:93
+#: contents/ui/FullRepresentation.qml:94
 msgid "Dismiss"
 msgstr "Tutup"
 
-#: contents/ui/main.qml:20
+#: contents/ui/main.qml:24
 msgid "TodoList"
 msgstr "TodoList"
 
-#: contents/ui/main.qml:22
+#: contents/ui/main.qml:26
 msgid "%1 item left"
 msgid_plural "%1 items left"
 msgstr[0] "%1 item tersisa"
 
-#: contents/ui/main.qml:23
+#: contents/ui/main.qml:27
 msgid "All done"
 msgstr "Semua selesai"
 
-#: contents/ui/main.qml:96
+#: contents/ui/main.qml:100
 msgid "Add List"
 msgstr "Tambah Daftar"
 
-#: contents/ui/main.qml:101
+#: contents/ui/main.qml:106
 msgid "Clear Completed"
 msgstr "Bersihkan yang Selesai"
 
-#: contents/ui/main.qml:109
+#: contents/ui/main.qml:115
 msgid "Export to File…"
 msgstr "Ekspor ke Berkas…"
 
-#: contents/ui/main.qml:114
+#: contents/ui/main.qml:120
 msgid "Import from File…"
 msgstr "Impor dari Berkas…"
 
-#: contents/ui/main.qml:119
+#: contents/ui/main.qml:126
 msgid "Delete on Complete"
 msgstr "Hapus Saat Selesai"
 
-#: contents/ui/main.qml:164
+#: contents/ui/main.qml:143
 msgid "Export Tasks"
 msgstr "Ekspor Tugas"
 
-#: contents/ui/main.qml:167 contents/ui/main.qml:187
-msgid "Markdown files (*.md)"
-msgstr "Berkas Markdown (*.md)"
-
-#: contents/ui/main.qml:167 contents/ui/main.qml:187
+#: contents/ui/main.qml:146 contents/ui/main.qml:166
 msgid "Text files (*.txt)"
 msgstr "Berkas teks (*.txt)"
 
-#: contents/ui/main.qml:167 contents/ui/main.qml:187
-msgid "All files (*)"
-msgstr "Semua berkas (*)"
-
-#: contents/ui/main.qml:174
+#: contents/ui/main.qml:153
 msgid "Exported tasks to %1"
 msgstr "Tugas diekspor ke %1"
 
-#: contents/ui/main.qml:176
+#: contents/ui/main.qml:155
 msgid "Could not export: %1"
 msgstr "Gagal mengekspor: %1"
 
-#: contents/ui/main.qml:185
+#: contents/ui/main.qml:164
 msgid "Import Tasks"
 msgstr "Impor Tugas"
 
-#: contents/ui/main.qml:193
+#: contents/ui/main.qml:172
 msgid "Could not import: %1"
 msgstr "Gagal mengimpor: %1"
 
-#: contents/ui/main.qml:195
+#: contents/ui/main.qml:174
+msgid "Cannot import while task storage is unavailable"
+msgstr "Tidak dapat mengimpor saat penyimpanan tugas tidak tersedia"
+
+#: contents/ui/main.qml:176
 msgid "The file is empty"
 msgstr "Berkas kosong"
 
-#: contents/ui/NoteItem.qml:90
+#: contents/ui/NoteItem.qml:40 contents/ui/NoteItem.qml:89
+#: contents/ui/NoteItem.qml:135
+msgid "Could not load tasks from %1: %2"
+msgstr "Gagal memuat tugas dari %1: %2"
+
+#: contents/ui/NoteItem.qml:53
+msgid "Could not save tasks to %1: %2"
+msgstr "Gagal menyimpan tugas ke %1: %2"
+
+#: contents/ui/NoteItem.qml:221
 msgid "Tasks imported"
 msgstr "Tugas berhasil diimpor"
 
-#: contents/ui/NoteItem.qml:104
+#: contents/ui/NoteItem.qml:235
 msgid "No completed items to clear"
 msgstr "Tidak ada item selesai untuk dibersihkan"
 
-#: contents/ui/NoteItem.qml:109
+#: contents/ui/NoteItem.qml:240
 msgid "Cleared 1 completed item"
 msgid_plural "Cleared %1 completed items"
 msgstr[0] "%1 item selesai dibersihkan"
 
-#: contents/ui/NoteItem.qml:347
+#: contents/ui/NoteItem.qml:483
 msgid "Deleted list \"%1\""
 msgstr "Daftar \"%1\" dihapus"
 
-#: contents/ui/NoteItem.qml:347
+#: contents/ui/NoteItem.qml:483
 msgid "Deleted list"
 msgstr "Daftar dihapus"
 

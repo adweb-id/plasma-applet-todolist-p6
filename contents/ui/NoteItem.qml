@@ -4,24 +4,177 @@ import org.kde.plasma.plasmoid
 Item {
 	id: noteItem
 
-	// Persist the serialized markdown in the plasmoid config (Plasma 6 has no
-	// NoteManager). Guard against the save->configChanged->load feedback loop.
+	required property var fileIO
+	property string storagePath: ''
+	property bool storageReady: false
+	property bool storageBusy: false
+	property bool pendingSave: false
+	property string lastFileText: ''
+	property bool fileAvailable: false
+	// Guard against the save->configChanged->load feedback loop.
 	property bool internalSave: false
 	property bool saveOnChange: true
 
-	function saveNote(str) {
-		if (!str) {
-			str = serializeTodoModel()
-		}
+	function cacheText(text) {
 		internalSave = true
-		Plasmoid.configuration.noteText = str
+		Plasmoid.configuration.noteText = text
 		internalSave = false
 	}
 
+	function cacheEdits() {
+		cacheText(serializeTodoModel())
+	}
+
+	function followStorageSwitch() {
+		if (Plasmoid.configuration.externalFile !== storagePath) {
+			storageReady = false
+			loadNote()
+		}
+	}
+
+	function saveNote() {
+		if (!storageReady) {
+			return
+		}
+		deboucedSaveNoteTimer.stop()
+		cacheEdits()
+		pendingSave = true
+		if (storageBusy) {
+			return
+		}
+		var str = serializeTodoModel()
+		pendingSave = false
+		if (!storagePath) {
+			return
+		}
+		storageBusy = true
+		fileIO.read(storagePath, function(code, out, err) {
+			if (code !== 0) {
+				storageBusy = false
+				fileAvailable = false
+				pendingSave = true
+				notifyStorageError(i18n("Could not load tasks from %1: %2", storagePath, err.trim()))
+				followStorageSwitch()
+				return
+			}
+			if (out !== lastFileText) {
+				storageBusy = false
+				acceptExternalText(out)
+				finishFileOperation()
+				return
+			}
+			fileIO.write(storagePath, str, function(code, out, err) {
+				storageBusy = false
+				if (code !== 0) {
+					pendingSave = true
+					fileAvailable = false
+					notifyStorageError(i18n("Could not save tasks to %1: %2", storagePath, err.trim()))
+					followStorageSwitch()
+					return
+				}
+				lastFileText = str
+				fileAvailable = true
+				if (storageErrorBanner) {
+					clearBanner()
+				}
+				finishFileOperation()
+			})
+		})
+	}
+
+	function finishFileOperation() {
+		if (pendingSave) {
+			saveNote()
+		} else if (Plasmoid.configuration.externalFile !== storagePath) {
+			loadNote()
+		}
+	}
+
+	function acceptExternalText(text) {
+		deboucedSaveNoteTimer.stop()
+		pendingSave = false
+		lastFileText = text
+		fileAvailable = true
+		cacheText(text)
+		clearBanner()
+		applyText(text)
+		storageReady = true
+	}
+
+	function checkExternalFile() {
+		if (storageBusy || !storagePath || Plasmoid.configuration.externalFile !== storagePath) {
+			return
+		}
+		storageBusy = true
+		fileIO.read(storagePath, function(code, out, err) {
+			storageBusy = false
+			if (code !== 0) {
+				fileAvailable = false
+				deboucedSaveNoteTimer.stop()
+				notifyStorageError(i18n("Could not load tasks from %1: %2", storagePath, err.trim()))
+				followStorageSwitch()
+				return
+			}
+			if (out !== lastFileText || !fileAvailable) {
+				acceptExternalText(out)
+			}
+			finishFileOperation()
+		})
+	}
+
+	// Poll the path, not an inode: editors and sync clients often replace files.
+	Timer {
+		interval: 1000
+		repeat: true
+		running: noteItem.storagePath !== ''
+		onTriggered: noteItem.checkExternalFile()
+	}
+
 	function loadNote() {
+		if (storageBusy) {
+			return
+		}
+		if (storageReady && fileAvailable && (pendingSave || deboucedSaveNoteTimer.running)) {
+			saveNote()
+			if (storageBusy || pendingSave) {
+				return
+			}
+		}
+		var path = Plasmoid.configuration.externalFile
+		clearBanner()
+		pendingSave = false
+		fileAvailable = false
+		if (!path) {
+			storagePath = ''
+			pendingSave = false
+			applyText(Plasmoid.configuration.noteText || '')
+			storageReady = true
+			return
+		}
+		var initialText = serializeTodoModel()
+		storagePath = path
+		storageReady = false
+		storageBusy = true
+		fileIO.readOrCreate(path, initialText, function(code, out, err) {
+			storageBusy = false
+			if (Plasmoid.configuration.externalFile !== path) {
+				loadNote()
+				return
+			}
+			if (code !== 0) {
+				storageReady = true
+				notifyStorageError(i18n("Could not load tasks from %1: %2", path, err.trim()))
+				return
+			}
+			acceptExternalText(out)
+			finishFileOperation()
+		})
+	}
+
+	function applyText(str) {
 		var savingOnChange = saveOnChange
 		saveOnChange = false
-		todoData = deserializeTodoModel(Plasmoid.configuration.noteText || '')
+		todoData = deserializeTodoModel(str)
 		numSections = Math.max(1, todoData.length)
 		updateAllModels()
 		saveOnChange = savingOnChange
@@ -33,7 +186,8 @@ Item {
 		onTriggered: saveNote()
 	}
 	function deboucedSaveNote() {
-		if (saveOnChange) {
+		if (saveOnChange && storageReady) {
+			cacheEdits()
 			deboucedSaveNoteTimer.restart()
 		}
 	}
@@ -44,6 +198,7 @@ Item {
 	property string bannerType: 'info'
 	property bool canUndo: false
 	property string undoSnapshot: ''
+	property bool storageErrorBanner: false
 
 	Timer {
 		id: bannerTimer
@@ -52,11 +207,20 @@ Item {
 	}
 
 	function notify(text, type) {
+		storageErrorBanner = false
 		canUndo = false
 		undoSnapshot = ''
 		bannerType = type || 'info'
 		bannerText = text
-		bannerTimer.restart()
+		if (bannerType === 'error') {
+			bannerTimer.stop()
+		} else {
+			bannerTimer.restart()
+		}
+	}
+	function notifyStorageError(text) {
+		notify(text, 'error')
+		storageErrorBanner = true
 	}
 	// Like notify(), but Undo restores `snapshot` (serialized lists).
 	function notifyUndo(text, snapshot) {
@@ -69,9 +233,10 @@ Item {
 		bannerText = ''
 		canUndo = false
 		undoSnapshot = ''
+		storageErrorBanner = false
 	}
 	function undo() {
-		if (canUndo) {
+		if (canUndo && storageReady) {
 			restoreText(undoSnapshot)
 		}
 		clearBanner()
@@ -79,9 +244,12 @@ Item {
 
 	// Replace all lists with serialized `str` and save it.
 	function restoreText(str) {
+		if (!storageReady) {
+			return
+		}
 		deboucedSaveNoteTimer.stop()
-		saveNote(str || '')
-		loadNote()
+		applyText(str || '')
+		saveNote()
 	}
 
 	function importText(str) {
@@ -112,9 +280,14 @@ Item {
 	Connections {
 		target: Plasmoid.configuration
 		function onNoteTextChanged() {
-			if (!internalSave) {
-				loadNote()
+			if (!internalSave && !Plasmoid.configuration.externalFile && storageReady) {
+				deboucedSaveNoteTimer.stop()
+				pendingSave = false
+				applyText(Plasmoid.configuration.noteText || '')
 			}
+		}
+		function onExternalFileChanged() {
+			loadNote()
 		}
 	}
 
@@ -398,9 +571,13 @@ Item {
 	}
 
 	Component.onCompleted: {
+		applyText(Plasmoid.configuration.noteText || '')
+		storageReady = true
 		loadNote()
 	}
 	Component.onDestruction: {
-		saveNote()
+		if (!storagePath) {
+			saveNote()
+		}
 	}
 }

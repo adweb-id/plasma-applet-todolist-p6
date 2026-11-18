@@ -4,7 +4,6 @@ import QtQuick.Dialogs
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.plasma5support as Plasma5Support
 import org.kde.kirigami as Kirigami
 
 PlasmoidItem {
@@ -12,6 +11,11 @@ PlasmoidItem {
 
 	NoteItem {
 		id: noteItemObj
+		fileIO: storageIO
+	}
+
+	FileIO {
+		id: storageIO
 	}
 
 	// Fall back to the default icon when the setting is empty.
@@ -94,11 +98,13 @@ PlasmoidItem {
 	Plasmoid.contextualActions: [
 		PlasmaCore.Action {
 			text: i18n("Add List")
+			enabled: noteItemObj.storageReady
 			icon.name: "list-add"
 			onTriggered: noteItemObj.addSection()
 		},
 		PlasmaCore.Action {
 			text: i18n("Clear Completed")
+			enabled: noteItemObj.storageReady
 			icon.name: "edit-clear-all"
 			onTriggered: {
 				noteItemObj.clearCompleted()
@@ -112,6 +118,7 @@ PlasmoidItem {
 		},
 		PlasmaCore.Action {
 			text: i18n("Import from File…")
+			enabled: noteItemObj.storageReady
 			icon.name: "document-import"
 			onTriggered: importDialog.open()
 		},
@@ -131,34 +138,6 @@ PlasmoidItem {
 	]
 
 	// ---- Export / import ----
-	// Runs shell commands to write and read files (QML can't write files).
-	Plasma5Support.DataSource {
-		id: executable
-		engine: "executable"
-		connectedSources: []
-		property var callbacks: ({})
-		onNewData: (sourceName, data) => {
-			var callback = callbacks[sourceName]
-			delete callbacks[sourceName]
-			disconnectSource(sourceName)
-			if (callback) {
-				callback(data["exit code"], data["stdout"] || "", data["stderr"] || "")
-			}
-		}
-		function run(cmd, callback) {
-			callbacks[cmd] = callback
-			connectSource(cmd)
-		}
-	}
-
-	function shellQuote(str) {
-		return "'" + String(str).replace(/'/g, "'\\''") + "'"
-	}
-	function urlToPath(url) {
-		var str = url.toString()
-		return str.startsWith("file://") ? decodeURIComponent(str.substring(7)) : str
-	}
-
 	FileDialog {
 		id: exportDialog
 		title: i18n("Export Tasks")
@@ -167,9 +146,9 @@ PlasmoidItem {
 		nameFilters: [i18n("Markdown files (*.md)"), i18n("Text files (*.txt)"), i18n("All files (*)")]
 		currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
 		onAccepted: {
-			var path = root.urlToPath(selectedFile)
+			var path = storageIO.urlToPath(selectedFile)
 			var text = noteItemObj.serializeTodoModel()
-			executable.run("printf '%s' " + root.shellQuote(text) + " > " + root.shellQuote(path), function(code, out, err) {
+			storageIO.write(path, text, function(code, out, err) {
 				if (code === 0) {
 					noteItemObj.notify(i18n("Exported tasks to %1", path), 'positive')
 				} else {
@@ -187,10 +166,12 @@ PlasmoidItem {
 		nameFilters: [i18n("Markdown files (*.md)"), i18n("Text files (*.txt)"), i18n("All files (*)")]
 		currentFolder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
 		onAccepted: {
-			var path = root.urlToPath(selectedFile)
-			executable.run("cat -- " + root.shellQuote(path), function(code, out, err) {
+			var path = storageIO.urlToPath(selectedFile)
+			storageIO.run("cat -- " + storageIO.shellQuote(path), function(code, out, err) {
 				if (code !== 0) {
 					noteItemObj.notify(i18n("Could not import: %1", err.trim()), 'error')
+				} else if (!noteItemObj.storageReady) {
+					noteItemObj.notify(i18n("Cannot import while task storage is unavailable"), 'error')
 				} else if (out.trim() === "") {
 					noteItemObj.notify(i18n("The file is empty"), 'error')
 				} else {

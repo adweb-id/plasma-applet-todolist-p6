@@ -1,4 +1,6 @@
+import QtCore
 import QtQuick
+import QtQuick.Dialogs
 import QtQuick.Controls as QQC2
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
@@ -22,6 +24,42 @@ Kirigami.FormLayout {
 	property alias cfg_bigCounter: bigCounterBox.checked
 	property alias cfg_roundCounter: roundCounterBox.checked
 	property alias cfg_showCompletedItems: showCompletedBox.checked
+	property alias cfg_externalFile: externalFileField.text
+
+	RowLayout {
+		Kirigami.FormData.label: i18n("Markdown file:")
+		QQC2.TextField {
+			id: externalFileField
+			Layout.preferredWidth: Kirigami.Units.gridUnit * 16
+			placeholderText: i18n("Optional: ~/todo.md")
+		}
+		QQC2.Button {
+			text: i18n("Choose…")
+			icon.name: "document-open"
+			onClicked: fileDialog.open()
+		}
+		QQC2.ToolButton {
+			icon.name: "edit-clear"
+			enabled: externalFileField.text !== ""
+			onClicked: externalFileField.text = ""
+			QQC2.ToolTip.text: i18n("Store tasks in the widget configuration")
+			QQC2.ToolTip.visible: hovered
+			Accessible.name: QQC2.ToolTip.text
+		}
+	}
+	FileDialog {
+		id: fileDialog
+		title: i18n("Select Task Storage")
+		fileMode: FileDialog.SaveFile
+		options: FileDialog.DontConfirmOverwrite
+		defaultSuffix: "md"
+		nameFilters: [i18n("Markdown files (*.md)"), i18n("All files (*)")]
+		currentFolder: StandardPaths.writableLocation(StandardPaths.HomeLocation)
+		onAccepted: {
+			var url = selectedFile.toString()
+			externalFileField.text = url.startsWith("file://") ? decodeURIComponent(url.substring(7)) : url
+		}
+	}
 
 	RowLayout {
 		Kirigami.FormData.label: i18n("Icon:")

@@ -46,6 +46,7 @@ FocusScope {
 
 		RowLayout {
 			id: notesRow
+			enabled: fullRepresentation.noteItem.storageReady
 			Layout.fillWidth: true
 			Layout.fillHeight: true
 
